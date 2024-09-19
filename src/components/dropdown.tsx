@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import { CityOptions } from '../weather/current'
-import { Text } from './text'
 
 const DropdownContainer = styled.div`
   display: flex;
@@ -52,13 +51,11 @@ const CityDropdown = ({ options, onSelect }: DropdownProps<CityOptions>) => {
     <DropdownContainer>
       <StyledSelect value={selectedOption} onChange={handleSelect}>
         <StyledOption value="" disabled>
-          <Text>-- Select a City --</Text>
+          -- Select a City --
         </StyledOption>
         {options.map((option, index) => (
           <StyledOption key={index} value={option.id}>
-            <Text>
-              {option.name} {option.country}
-            </Text>
+            {option.name} {option.country}
           </StyledOption>
         ))}
       </StyledSelect>
