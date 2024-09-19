@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './App.css'
 import CurrentWeather from './weather/current'
+import ForecastWeather from './weather/forecast'
 
 const cityOptions = [
   {
@@ -30,6 +31,7 @@ const App = () => {
         setSelectedCity={setSelectedCity}
         cityOptions={cityOptions}
       />
+      <ForecastWeather selectedCity={selectedCity} />
     </div>
   )
 }
