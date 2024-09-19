@@ -1,11 +1,12 @@
 import { apiFetch } from './data'
 
+interface WeatherDetails {
+  main: string
+  description: string
+  icon: string
+}
 export interface WeatherCurrent {
-  weather: {
-    main: string
-    description: string
-    icon: string
-  }[]
+  weather: Array<WeatherDetails>
   main: {
     temp: number
   }
@@ -23,11 +24,7 @@ export interface WeatherForecast {
       temp_min: number
       temp_max: number
     }
-    weather: Array<{
-      main: string
-      description: string
-      icon: string
-    }>
+    weather: Array<WeatherDetails>
     wind: {
       speed: number
     }
@@ -52,3 +49,6 @@ export const fetchForecastWeather = (cityId: string) => {
   const forecastWeatherUrl = composeForecastWeatherUrl(cityId)
   return apiFetch<WeatherForecast>(forecastWeatherUrl)
 }
+
+export const composeIconUrl = (iconCode: string) =>
+  `https://openweathermap.org/img/wn/${iconCode}@2x.png`
