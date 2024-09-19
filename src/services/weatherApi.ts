@@ -16,19 +16,21 @@ export interface WeatherCurrent {
   dt: number
 }
 
+export interface WeatherForecastUnit {
+  dt: number
+  main: {
+    temp: number
+    temp_min: number
+    temp_max: number
+  }
+  weather: Array<WeatherDetails>
+  wind: {
+    speed: number
+  }
+}
+
 export interface WeatherForecast {
-  list: Array<{
-    dt: number
-    main: {
-      temp: number
-      temp_min: number
-      temp_max: number
-    }
-    weather: Array<WeatherDetails>
-    wind: {
-      speed: number
-    }
-  }>
+  list: Array<WeatherForecastUnit>
 }
 
 const BASE_URL = 'http://api.openweathermap.org'
@@ -42,8 +44,8 @@ export const fetchCurrentWeather = (cityId: string) => {
   return apiFetch<WeatherCurrent>(currentWeatherUrl)
 }
 
-const composeForecastWeatherUrl = (cityId: string, numOfTimestamps = 5) =>
-  `${BASE_URL}/data/2.5/forecast?id=${cityId}&units=metric&cnt=${numOfTimestamps}&appid=${APP_ID}`
+const composeForecastWeatherUrl = (cityId: string) =>
+  `${BASE_URL}/data/2.5/forecast?id=${cityId}&units=metric&appid=${APP_ID}`
 
 export const fetchForecastWeather = (cityId: string) => {
   const forecastWeatherUrl = composeForecastWeatherUrl(cityId)
