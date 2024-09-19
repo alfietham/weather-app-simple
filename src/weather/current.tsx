@@ -2,14 +2,11 @@ import { useState } from 'react'
 import styled from 'styled-components'
 
 import { ApiResponse } from '../services/data'
-import {
-  composeIconUrl,
-  fetchCurrentWeather,
-  WeatherCurrent,
-} from '../services/weatherApi'
+import { fetchCurrentWeather, WeatherCurrent } from '../services/weatherApi'
 import CityDropdown from '../components/dropdown'
 import { Text } from '../components/text'
-import UrlIcon from '../components/icon'
+import { metersPerSecToKph } from '../services/utils'
+import WeatherDetailsSection from './weatherDetails'
 
 export interface CityOptions {
   id: number
@@ -20,29 +17,6 @@ export interface CityOptions {
 interface CurrentWeatherProps {
   setSelectedCity: (value: string) => void
   cityOptions: CityOptions[]
-}
-
-// @TODO: Put in separate file and unit test
-const metersPerSecToKph = (speedMps: number) => Math.round(speedMps * 3.6)
-
-const WeatherDetailsSection = ({
-  weather,
-}: Pick<WeatherCurrent, 'weather'>) => {
-  // The first weather condition in API respond is primary
-  // [Source](https://openweathermap.org/weather-conditions)
-  const weatherDetailPrimary = weather[0]
-
-  return (
-    weatherDetailPrimary && (
-      <WeatherDetails>
-        {weatherDetailPrimary.icon && (
-          <UrlIcon url={composeIconUrl(weatherDetailPrimary.icon)} />
-        )}
-        <Text p1>{weatherDetailPrimary.main}</Text>
-        <Text>{weatherDetailPrimary.description}</Text>
-      </WeatherDetails>
-    )
-  )
 }
 
 const WeatherContainer = styled.div`
@@ -61,13 +35,6 @@ const WeatherInfo = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-`
-
-const WeatherDetails = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 10px;
 `
 
 const CurrentWeather = ({
