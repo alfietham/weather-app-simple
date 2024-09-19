@@ -40,7 +40,7 @@ const App = () => {
 
   return (
     <MainApp>
-      <Text h1>Weather Forecast</Text>
+      <Text $h1>Weather Forecast</Text>
       <CurrentWeather
         setSelectedCity={setSelectedCity}
         cityOptions={cityOptions}

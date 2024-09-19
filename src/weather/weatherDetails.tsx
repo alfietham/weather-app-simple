@@ -23,7 +23,7 @@ const WeatherDetailsSection = ({
         {weatherDetailPrimary.icon && (
           <UrlIcon url={composeIconUrl(weatherDetailPrimary.icon)} />
         )}
-        <Text p1>{weatherDetailPrimary.main}</Text>
+        <Text $p1>{weatherDetailPrimary.main}</Text>
         <Text>{weatherDetailPrimary.description}</Text>
       </WeatherDetails>
     )

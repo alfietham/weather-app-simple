@@ -87,11 +87,11 @@ const ForecastWeather = ({ selectedCity }: ForecastWeatherProps) => {
                   <ForecastUnit key={dt}>
                     <div>
                       <Text>{dateTime.format('ddd MMM D')}</Text>
-                      <Text p1>{dateTime.format('hA')}</Text>
+                      <Text $p1>{dateTime.format('hA')}</Text>
                     </div>
                     <WeatherDetailsSection weather={weather} />
                     <div>
-                      <Text h2>{main.temp} °C</Text>
+                      <Text $h2>{main.temp} °C</Text>
                       <Text>High: {main.temp_max} °C</Text>
                       <Text>Low: {main.temp_min} °C</Text>
                     </div>
