@@ -91,9 +91,9 @@ const ForecastWeather = ({ selectedCity }: ForecastWeatherProps) => {
                     </div>
                     <WeatherDetailsSection weather={weather} />
                     <div>
-                      <Text $h2>{main.temp} °C</Text>
-                      <Text>High: {main.temp_max} °C</Text>
-                      <Text>Low: {main.temp_min} °C</Text>
+                      <Text $h2>{Math.round(main.temp)} °C</Text>
+                      <Text>High: {Math.round(main.temp_max)} °C</Text>
+                      <Text>Low: {Math.round(main.temp_min)} °C</Text>
                     </div>
                     <Text>{metersPerSecToKph(wind.speed)} km/h winds</Text>
                   </ForecastUnit>

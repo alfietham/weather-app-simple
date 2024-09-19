@@ -75,7 +75,7 @@ const CurrentWeather = ({
       {weatherData && !loading && !error && (
         <WeatherInfo>
           <WeatherDetailsSection weather={weatherData.weather} />
-          <Text $h2>{weatherData.main.temp} °C</Text>
+          <Text $h2>{Math.round(weatherData.main.temp)} °C</Text>
           <Text>{metersPerSecToKph(weatherData.wind.speed)} km/h winds</Text>
         </WeatherInfo>
       )}
